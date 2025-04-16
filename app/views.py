@@ -171,11 +171,11 @@ def landing(request):
 def create_tokens(username):
        access_payload = {
            "username": username,
-           "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=15),
+           "exp": datetime.utcnow() + timedelta(minutes=15),
        }         
        refresh_payload = {
            "username": username,
-           "exp": datetime.datetime.utcnow() + datetime.timedelta(days=7),
+           "exp": datetime.utcnow() + timedelta(days=7),
        }
        access_payload = jwt.encode(access_payload, SECRET_KEY, algorithm="HS256")
        refresh_payload = jwt.encode(refresh_payload, SECRET_KEY, algorithm="HS256")

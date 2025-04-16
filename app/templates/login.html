@@ -43,7 +43,7 @@
     var form = new FormData(formInput);
 
     try {
-        const response = await axios.post('https://groupify4u.pythonanywhere.com/login_user/', form, {
+        const response = await axios.post('http://localhost:8000/login_user/', form, {
             headers: {
                 'Content-Type': 'multipart/form-data' 
             },
@@ -54,10 +54,8 @@
         
         if (data.status === true) {
             localStorage.setItem('username', data.username);
-            window.location.replace('https://groupify4u.pythonanywhere.com/landing/');
-        } else {
-            console.log(data.error);
-        }
+            window.location.replace('http://localhost:8000/landing/');
+        } 
 
     } catch (error) {
         console.error("Login failed", error.response?.data || error.message);
