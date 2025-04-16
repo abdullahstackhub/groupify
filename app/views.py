@@ -653,7 +653,7 @@ def get_significant_interests(time_data, threshold=60):
 
 def get_hot_groups(interests):
     try:
-        response = requests.get('http://localhost:8000/getHot/')
+        response = requests.get('https://groupify4u.pythonanywhere.com/getHot/')
         response.raise_for_status()  
         hot_data = response.json().get('data', [])
         return [group for group in hot_data if group.get('category') in interests]

@@ -113,7 +113,7 @@
 
         const submitIntrest = document.getElementById('submitIntrest')
         submitIntrest.addEventListener('click', ()=>{
-            fetch('http://localhost:8000/user_intrest/', {
+            fetch('https://groupify4u.pythonanywhere.com/user_intrest/', {
                 method:'post',
                 headers:{
                     'Content-Type':'application/json'
@@ -129,7 +129,7 @@
                 console.log({'data':data.data})
             })
             console.log(selectedInterests)
-            window.location.replace('http://localhost:8000/home/')
+            window.location.replace('https://groupify4u.pythonanywhere.com/home/')
 
         })
       

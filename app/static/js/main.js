@@ -11,7 +11,7 @@ if (localStorage.getItem('group_id') && localStorage.getItem('username')) {
         console.log(`User spent ${timeSpent} seconds in the group`);
 
         // Send time to the backend (replace with your API endpoint)
-        axios.post('http://localhost:8000/time_user_spent/', {
+        axios.post('https://groupify4u.pythonanywhere.com/time_user_spent/', {
             "username": localStorage.getItem('username'),
             "group_id": localStorage.getItem('group_id'),
             "time_spent": timeSpent
@@ -58,7 +58,7 @@ document.getElementById('chat-container').addEventListener('click', (event) => {
             if (newMessage) {
                 console.log('Updated message:', newMessage);
                 textMessage.innerHTML = `<span class="text">${newMessage}</span>`;
-                axios.post('http://localhost:8000/update_message/', {
+                axios.post('https://groupify4u.pythonanywhere.com/update_message/', {
                     "id": messageDiv.querySelector('.messageId').value,
                     "message": newMessage
                 })
@@ -75,7 +75,7 @@ document.getElementById('chat-container').addEventListener('click', (event) => {
 
 // Ensure the user is logged in. Redirect to the registration page if not.
 if (!localStorage.getItem('username')) {
-    window.location.replace('http://localhost:8000/register/');
+    window.location.replace('https://groupify4u.pythonanywhere.com/register/');
 }
 
 
@@ -90,7 +90,7 @@ if (!localStorage.getItem('group')) {
 }
 
 function checkJoined() {
-    return axios.post('http://localhost:8000/checkJoined/', {
+    return axios.post('https://groupify4u.pythonanywhere.com/checkJoined/', {
         'username': localStorage.getItem('username'),
         'group_id': localStorage.getItem('group_id')
     })
@@ -151,7 +151,7 @@ async function joinHandler() {
 
           `
             controlAccess.addEventListener('click', () => {
-                axios.post('http://localhost:8000/leaveGroup/', {
+                axios.post('https://groupify4u.pythonanywhere.com/leaveGroup/', {
                     "username": localStorage.getItem('username'),
                     "group_id": localStorage.getItem('group_id')
                 })
@@ -166,7 +166,7 @@ async function joinHandler() {
        <p style="margin:auto;color:#bebebe;">Join This Group To Chat With Other Members.</p>
        `
             controlAccess.addEventListener('click', () => {
-                axios.post('http://localhost:8000/groupJoined/', {
+                axios.post('https://groupify4u.pythonanywhere.com/groupJoined/', {
                     "username": localStorage.getItem('username'),
                     "group_id": localStorage.getItem('group_id')
                 })
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fetch and display joined groups
     function getJoinedGroups() {
-        axios.post('http://localhost:8000/renderJoined/', {
+        axios.post('https://groupify4u.pythonanywhere.com/renderJoined/', {
             'username': localStorage.getItem('username'),
         })
             .then(response => {
@@ -290,7 +290,7 @@ let websocket;
 
 // Fetch previous chat messages for the current group.
 const fetchChats = () => {
-    const fetchChatUrl = 'http://localhost:8000/get_chats/';
+    const fetchChatUrl = 'https://groupify4u.pythonanywhere.com/get_chats/';
     const fetchChatData = { "group": localStorage.getItem('group') };
 
     axios.post(fetchChatUrl, fetchChatData)
@@ -430,7 +430,7 @@ document.getElementById('chat-container').addEventListener('click', (event) => {
 
 // Function to handle message deletion
 const unsendMessage = (messageId, messageElement) => {
-    axios.post(`http://localhost:8000/unsend_message/`, { 'id': messageId })
+    axios.post(`https://groupify4u.pythonanywhere.com/unsend_message/`, { 'id': messageId })
         .then(response => {
             if (response.data.unsent === true) {
                 messageElement.innerHTML = `<p class="textMessage"><em>Unsent message</em></p>`;
@@ -515,7 +515,7 @@ const handleMessageSubmit = (event) => {
     const fileName = file ? file.name : 'null';
     const formData = new FormData(event.target);
 
-    fetch('http://localhost:8000/save_chats/', {
+    fetch('https://groupify4u.pythonanywhere.com/save_chats/', {
         method: 'POST',
         body: formData,
     })
@@ -629,7 +629,7 @@ const renderChatGroups = (groups) => {
 
 // Fetch groups from the server
 const fetchAllGroups = () => {
-    axios.post('http://localhost:8000/renderIntrest/', { username: localStorage.getItem('username') })
+    axios.post('https://groupify4u.pythonanywhere.com/renderIntrest/', { username: localStorage.getItem('username') })
         .then(response => {
             if (response.data && response.data.data) {
                 console.log(response.data.data)
@@ -654,7 +654,7 @@ groupSearchInput.addEventListener('input', function (event) {
         fetchAllGroups();
         return;
     }
-    axios.post('http://localhost:8000/groupSearch/', { name: userInput })
+    axios.post('https://groupify4u.pythonanywhere.com/groupSearch/', { name: userInput })
         .then(response => {
             if (response.data && response.data.data.length > 0) {
                 renderChatGroups(response.data.data);

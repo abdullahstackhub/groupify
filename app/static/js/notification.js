@@ -20,7 +20,7 @@ function showNotification(message) {
 function logHeyEveryMinute() {
     setInterval(() => {
         console.log("hey");
-        axios.post('http://localhost:8000/notify/', {
+        axios.post('https://groupify4u.pythonanywhere.com/notify/', {
             'username': localStorage.getItem('username')
         })
             .then(response => {

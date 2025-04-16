@@ -1,4 +1,4 @@
-axios.post('http://localhost:8000/profile_handling/', {
+axios.post('https://groupify4u.pythonanywhere.com/profile_handling/', {
   'username': localStorage.getItem('username')
 })
   .then(response => {
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
       };
 
 
-      axios.post("http://localhost:8000/update_profile/", updatedData)
+      axios.post("https://groupify4u.pythonanywhere.com/update_profile/", updatedData)
         .then(response => console.log("Profile updated:", response.data))
         .catch(error => console.error("Update error:", error));
 
@@ -86,7 +86,7 @@ function toggleEdit() {
       username: document.getElementById("username")?.value || ""
     };
 
-    axios.post("http://localhost:8000/update_profile/", updatedData)
+    axios.post("https://groupify4u.pythonanywhere.com/update_profile/", updatedData)
       .then(response => console.log("Profile updated:", response.data))
       .catch(error => console.error("Update error:", error));
 
@@ -102,7 +102,7 @@ function toggleEdit() {
 // Data Arrays
 var cardData1 = [];
 
-axios.post('http://localhost:8000/user_intrest_category/', {
+axios.post('https://groupify4u.pythonanywhere.com/user_intrest_category/', {
   'username': localStorage.getItem('username')
 })
   .then(response => {
@@ -161,7 +161,7 @@ function toggleEdit(cardId, button) {
     });
 
     console.log(progressData);
-    axios.post('http://localhost:8000/update_user_intrest_category/', {
+    axios.post('https://groupify4u.pythonanywhere.com/update_user_intrest_category/', {
       'username': localStorage.getItem('username'),
       'data': progressData
     })
@@ -190,7 +190,7 @@ function adjustSliders(cardId, changedSlider) {
 renderCard('card-1', cardData1);
 
 document.addEventListener("DOMContentLoaded", function () {
-  axios.post('http://localhost:8000/my_creations/', {
+  axios.post('https://groupify4u.pythonanywhere.com/my_creations/', {
     'username': localStorage.getItem('username')
   })
     .then(response => {
@@ -299,7 +299,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("editOverlay").style.display = "none";
 
         // Fetch fresh data and update the UI
-        axios.post('http://localhost:8000/my_creations/', {
+        axios.post('https://groupify4u.pythonanywhere.com/my_creations/', {
           'username': localStorage.getItem('username')
         })
           .then(response => {
@@ -334,7 +334,7 @@ document.addEventListener("DOMContentLoaded", function () {
               formData.append("image", "false");
             }
 
-            axios.post('http://localhost:8000/update_groups/', formData, {
+            axios.post('https://groupify4u.pythonanywhere.com/update_groups/', formData, {
               headers: { "Content-Type": "multipart/form-data" }
             })
               .then(response => {
@@ -447,7 +447,7 @@ if(localStorage.getItem('username')){
       localStorage.removeItem('group_image')
       localStorage.removeItem('server_group')
       localStorage.removeItem('username')
-     window.location.replace('http://localhost:8000/register/')
+     window.location.replace('https://groupify4u.pythonanywhere.com/register/')
   })
 }
 

@@ -212,7 +212,7 @@
     <!-- JavaScript to Show and Hide Form -->
     <script>
       function removeGroups(id) {
-        axios.post('http://localhost:8000/delete_groups/', {
+        axios.post('https://groupify4u.pythonanywhere.com/delete_groups/', {
           'id': id,
           'creator': localStorage.getItem('username')
         })
@@ -226,7 +226,7 @@
     </script>
     <script>
       function fetchAndUpdateRank() {
-        axios.post('http://localhost:8000/points_to_rank/', {
+        axios.post('https://groupify4u.pythonanywhere.com/points_to_rank/', {
           'username': localStorage.getItem('username')
         })
           .then(response => {

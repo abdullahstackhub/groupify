@@ -1,11 +1,11 @@
-axios.get("http://localhost:8000/landing/", {
+axios.get("https://groupify4u.pythonanywhere.com/landing/", {
     withCredentials: true
 })
     .then(response => console.log(response.data))
     .catch(error => console.log(error));
 
 if (!localStorage.getItem('username')) {
-    window.location.replace('http://localhost:8000/register/');
+    window.location.replace('https://groupify4u.pythonanywhere.com/register/');
 }
 
 
@@ -35,13 +35,13 @@ function showSearchResults(results) {
             // Get the hidden input value inside this list item
             const groupId = listItem.querySelector('.result_id').value;
 
-            axios.post('http://localhost:8000/requestGroupData/', { 'group_id': groupId })
+            axios.post('https://groupify4u.pythonanywhere.com/requestGroupData/', { 'group_id': groupId })
                 .then(response => {
                     localStorage.setItem("group", response.data.name);
                     localStorage.setItem("group_id", response.data.id);
                     localStorage.setItem("group_image", response.data.image);  // Store only the image name
                     localStorage.setItem("server_group", response.data.name.replace(/\s+/g, ""));
-                    window.location.replace("http://localhost:8000/home/")
+                    window.location.replace("https://groupify4u.pythonanywhere.com/home/")
                 })
                 .catch(error => console.error('Request Error:', error));
         });
@@ -60,7 +60,7 @@ groupSearchInput.addEventListener('input', function (event) {
     const userInput = event.target.value.trim();
 
 
-    axios.post('http://localhost:8000/groupSearch/', { name: userInput })
+    axios.post('https://groupify4u.pythonanywhere.com/groupSearch/', { name: userInput })
         .then(response => {
             if (response.data && response.data.data.length > 0) {
                 showSearchResults(response.data.data);
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-axios.post('http://localhost:8000/renderJoined/', {
+axios.post('https://groupify4u.pythonanywhere.com/renderJoined/', {
     "username": localStorage.getItem('username')
 })
     .then(response => {
@@ -174,7 +174,7 @@ function renderMyGroups(groups) {
 
             console.log("Clicked group name:", groupName);
             console.log("Image name:", imageName);
-            window.location.replace('http://localhost:8000/home/');
+            window.location.replace('https://groupify4u.pythonanywhere.com/home/');
         }
     });
 
@@ -186,7 +186,7 @@ function renderMyGroups(groups) {
 
 // Intrests here
 
-axios.post('http://localhost:8000/renderIntrest/', {
+axios.post('https://groupify4u.pythonanywhere.com/renderIntrest/', {
     "username": localStorage.getItem('username')
 })
     .then(response => {
@@ -267,7 +267,7 @@ gsap.utils.toArray('.group-card').forEach((card, i) => {
 
             console.log("Clicked group name:", groupName);
             console.log("Image name:", imageName);
-            window.location.replace('http://localhost:8000/home/');
+            window.location.replace('https://groupify4u.pythonanywhere.com/home/');
         }
     });
 
@@ -279,7 +279,7 @@ gsap.utils.toArray('.group-card').forEach((card, i) => {
 
 // My picked here
 
-axios.post('http://localhost:8000/find_similar_users/', {
+axios.post('https://groupify4u.pythonanywhere.com/find_similar_users/', {
     "username": localStorage.getItem('username')
 })
     .then(response => {
@@ -346,7 +346,7 @@ function renderMyPicks(groups) {
 
             console.log("Clicked group name:", groupName);
             console.log("Image name:", imageName);
-            window.location.replace('http://localhost:8000/home/');
+            window.location.replace('https://groupify4u.pythonanywhere.com/home/');
         }
     });
 }
@@ -354,7 +354,7 @@ function renderMyPicks(groups) {
 
 // ----------------------------------Hot Trending here------------------------------------
 
-axios.get('http://localhost:8000/getHot/')
+axios.get('https://groupify4u.pythonanywhere.com/getHot/')
     .then(response => {
         console.log(response.data);
         hotgroups(response.data.data);
@@ -416,7 +416,7 @@ function hotgroups(groups) {
             localStorage.setItem("server_group", groupName.replace(/\s+/g, ""));
             console.log("Clicked group name:", groupName);
             console.log("Image name:", imageName);
-            window.location.replace('http://localhost:8000/home/');
+            window.location.replace('https://groupify4u.pythonanywhere.com/home/');
         }
     });
 
@@ -435,7 +435,7 @@ if(localStorage.getItem('username')){
       localStorage.removeItem('group_image')
       localStorage.removeItem('server_group')
       localStorage.removeItem('username')
-     window.location.replace('http://localhost:8000/register/')
+     window.location.replace('https://groupify4u.pythonanywhere.com/register/')
   })
 }
 

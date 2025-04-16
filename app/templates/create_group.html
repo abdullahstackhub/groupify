@@ -189,7 +189,7 @@
 
            console.log(group_image.name)
 
-           axios.post(`http://localhost:8000/group_save/`, JSON.stringify({
+           axios.post(`https://groupify4u.pythonanywhere.com/group_save/`, JSON.stringify({
                'name':group_name,
                'groupdesc': group_desc,
                'groupcategory':group_category,
@@ -202,7 +202,7 @@
        function group_manage(data){
           if(data.Status == 200){
             sessionStorage.setItem('group', group_name)  
-            window.location.replace('http://localhost:8000/landing/')
+            window.location.replace('https://groupify4u.pythonanywhere.com/landing/')
           }
           else{
             alert('group creation error')
